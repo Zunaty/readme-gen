@@ -10,37 +10,77 @@ function renderLicenseLink(license) {}
 // If there is no license, return an empty string
 function renderLicenseSection(license) {}
 
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `
-  # ${data.title}
+const genDescription = desData => {
+  if(!desData) {
+    return '';
+  }
 
+  return `
   ## Description
 
-  ${data.description}
+  ${desData}
+  `;
+}
 
+const genInstall = installData => {
+  if(!installData) {
+    return '';
+  }
+
+  return `
   ## Installation
 
-  ${data.installation}
+  ${installData}
+  `;
+}
 
-  ## How to use
+const genUsage = usageData => {
+  if(!usageData) {
+    return '';
+  }
 
-  ${data.usage}
+  return `
+  ## Usage
+
+  ${usageData}
+  `;
+}
+
+const genTest = testData => {
+  if(!testData) {
+    return '';
+  }
+
+  return `
+  ## Tests
+
+  ${testData}
+  `
+}
+
+// TODO: Create a function to generate markdown for README
+function generateMarkdown(data) {
+  return [data.title, `
+  # ${data.title}
+
+  ${genDescription(data.description)}
+
+  ${genInstall(data.installation)}
+
+  ${genUsage(data.usage)}
 
   ## Contributers
 
   ${data.name}
 
-  ## Tests
-
-  ${data.tests}
+  ${genTest(data.test)}
 
   ## Questions
 
   If you have any questions please contact me at: [${data.email}](${data.email})
   This is my GitHub: [${data.github}](${data.github})
 
-  `;
+  `]
 }
 
 module.exports = generateMarkdown;
