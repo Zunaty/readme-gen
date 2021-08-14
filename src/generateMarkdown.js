@@ -60,6 +60,7 @@ const genTest = testData => {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  //console.log(data)
   return [data.title, `
   # ${data.title}
 
@@ -77,8 +78,8 @@ function generateMarkdown(data) {
 
   ## Questions
 
-  If you have any questions please contact me at: [${data.email}](${data.email})
-  This is my GitHub: [${data.github}](${data.github})
+  If you have any questions please contact me at: [${data.email}](${data.email}) \n
+  This is my GitHub: [${data.github}](https://github.com/${data.github})
 
   `]
 }

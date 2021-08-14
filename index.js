@@ -35,6 +35,21 @@ const promptUser = () => {
             }
         },
 
+        // Asking for user email
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Enter your email address (Required)',
+            validate: gitHubInput => {
+                if (gitHubInput) {
+                    return true;
+                } else {
+                    console.log('Please enter your email!');
+                    return false;
+                }
+            }
+        },
+
         // Asking for project name
         {
             type: 'input',
@@ -118,13 +133,14 @@ const promptUser = () => {
 
     ])
     .then(readmeData => {
-        console.log(readmeData)
+        //console.log(readmeData)
+        return readmeData;
     })
 }
 
 // Creates the markdown file
-function writeToFile(filename, data) {
-    fs.writeFile(`./dist/README(${filename}).md`, data, err => {
+function writeToFile(data) {
+    fs.writeFile(`./dist/README(${data[0]}).md`, data[1], err => {
         if(err) {
             console.log(err)
         }
