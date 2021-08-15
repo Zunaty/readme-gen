@@ -2,6 +2,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require('./src/generateMarkdown.js')
 
+// This asks the user for all relevant information
 const promptUser = () => {
     return inquirer.prompt([
 
@@ -9,12 +10,12 @@ const promptUser = () => {
         {
             type: 'input',
             name: 'name',
-            message: 'What is your name? (Required)',
+            message: 'Enter your full name (Required)',
             validate: nameInput => {
                 if (nameInput) {
                     return true;
                 } else {
-                    console.log('Please enter your name');
+                    console.log('Please enter your full name!');
                     return false;
                 }
             }
@@ -117,7 +118,7 @@ const promptUser = () => {
             default: true
         },
 
-        // Getting description for project if above is true
+        // Getting usage for project if above is true
         {
             type: 'input',
             name: 'usage',
@@ -131,6 +132,50 @@ const promptUser = () => {
             }
         },
 
+        // Asking if they would like to add a tests section
+        {
+            type: 'confirm',
+            name: 'confirmTests',
+            message: 'Would you like to add a tests section for your project?',
+            default: true
+        },
+
+        // Getting tests for project if above is true
+        {
+            type: 'input',
+            name: 'tests',
+            message: 'Provide test information about your project:',
+            when: ({ confirmTests }) => {
+                if (confirmTests) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
+
+        // Asking if they would like to add a license
+        {
+            type: 'confirm',
+            name: 'confirmLicense',
+            message: 'Would you like to add a license for your project?',
+            default: true
+        },
+
+        // Getting their license choice
+        {
+            type: 'list',
+            name: 'license',
+            message: 'Please select which license you would like to use:',
+            choices: ['MIT License', 'GNU GPLv3 License'],
+            when: ({ confirmLicense}) => {
+                if (confirmLicense) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        },
     ])
     .then(readmeData => {
         //console.log(readmeData)
@@ -149,6 +194,8 @@ function writeToFile(data) {
 }
 
 // Runs as soon as the user calls the app
+// then sends the answers over to the markdown generator
+// then calls that back into the file writer function
 promptUser()
     .then(answers => {
         return generateMarkdown(answers);
