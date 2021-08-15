@@ -30,7 +30,7 @@ const renderLicenseSection = (license, name) => {
   }
   if(license === 'MIT License') {
   return `
-  ### MIT License Text
+  ### License 
 
   MIT License
 
@@ -57,7 +57,7 @@ const renderLicenseSection = (license, name) => {
   }
   if(license === 'GNU GPLv3 License') {
   return `
-  ### GNU GPLv3 License Text
+  ### License
 
   Copyright (C) <year>  <name of author>
 

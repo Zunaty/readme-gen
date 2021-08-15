@@ -51,6 +51,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-### Preview
+### Preview and Video Link
+
+[Video Walkthrough](https://drive.google.com/file/d/17YtpswmFKCH4T1Z3aNzN9HsGpdp8ft7s/view)
 
 ![Preview](./assets/images/preview.png)
